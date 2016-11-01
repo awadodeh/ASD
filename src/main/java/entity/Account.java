@@ -8,9 +8,9 @@ import java.util.List;
 public class Account {
 
     String accountNumber;
-
-    Account account;
     List<AccountEntry> accountEntryList;
-
+    Customer customer;
+    AccountType accountType;
+    
 }
 
