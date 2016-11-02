@@ -13,15 +13,4 @@ public class CheckingAccount extends Account{
 		
 		
 	}
-
-//    /**
-//     * This method will add the interest rate to the balance directly
-//     */
-//	public void addInterest() {
-//    	setInterest(getInterestStrategy().addInterest(getBalance()));
-//    	
-//    	long newBalance=getBalance()+getInterest();
-//    	setBalance(newBalance);
-//
-//    }
 }

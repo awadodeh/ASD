@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dataAccess.AccountDAO;
 import entity.Account;
 
@@ -8,7 +10,7 @@ import entity.Account;
  */
 public class AccountService {
 
-    Account account;
+    List<Account> account;
     AccountDAO accountDAO;
 
 
@@ -41,10 +43,15 @@ public class AccountService {
 	  * This method will add the interest rate to the balance directly
 	 */
 	 public void addInterest() {
-		 account.setInterest(account.getInterestStrategy().addInterest(account.getBalance()));
-	    	
-		 long newBalance=account.getBalance()+account.getInterest();
-		 account.setBalance(newBalance);
+		 
+		 account.forEach(account ->{
+			 //to get the interest value
+			 account.setInterest(account.getInterestStrategy().addInterest(account.getBalance()));
+		    	
+			 
+			 long newBalance=account.getBalance()+account.getInterest();
+			 account.setBalance(newBalance);
+		 });
 
 	 }
 }
