@@ -11,7 +11,27 @@ public class Account {
     private List<AccountEntry> accountEntryList;
     private Customer customer;
     private InterestStrategy interestStrategy;
+    private long balance;
+    private long interest;
     
+    
+    
+    
+    public long getInterest() {
+		return interest;
+	}
+
+	public void setInterest(long interest) {
+		this.interest = interest;
+	}
+
+	public long getBalance() {
+		return balance;
+	}
+	
+	public void setBalance(long balance) {
+		this.balance = balance;
+	}
     
     
 	public String getAccountNumber() {
@@ -46,6 +66,15 @@ public class Account {
 		this.interestStrategy = interestStrategy;
 	}
    
-    
+	/**
+	  * This method will add the interest rate to the balance directly
+	 */
+	 public void addInterest() {
+		 setInterest(getInterestStrategy().addInterest(getBalance()));
+	    	
+		 long newBalance=getBalance()+getInterest();
+		 setBalance(newBalance);
+
+	 }
 }
 

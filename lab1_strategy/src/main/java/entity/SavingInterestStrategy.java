@@ -1,6 +1,6 @@
 package entity;
 
-public class SavingInterestStrategy {
+public class SavingInterestStrategy implements InterestStrategy{
 
 	public SavingInterestStrategy() {
 		// TODO Auto-generated constructor stub
@@ -13,8 +13,13 @@ public class SavingInterestStrategy {
          If balance > 1000 and balance < 5000 then you get 2% interest
          If balance > 5000 then you get 4% interest
      */
-	public void addInterest() {
-		// TODO Auto-generated method stub
-
+	public long addInterest(long balance) {
+		if(balance <= 1000){
+			return (long) (balance*0.01);
+		}else if(balance > 1000 && balance <= 5000){
+			return (long) (balance*0.02);
+		}else{
+			return (long) (balance*0.04);
+		}
 	}
 }

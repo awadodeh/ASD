@@ -35,4 +35,16 @@ public class AccountService {
     public void getAccount(Account account) {
 
     }
+    
+    
+    /**
+	  * This method will add the interest rate to the balance directly
+	 */
+	 public void addInterest() {
+		 account.setInterest(account.getInterestStrategy().addInterest(account.getBalance()));
+	    	
+		 long newBalance=account.getBalance()+account.getInterest();
+		 account.setBalance(newBalance);
+
+	 }
 }
