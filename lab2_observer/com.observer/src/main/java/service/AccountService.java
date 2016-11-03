@@ -6,6 +6,7 @@ import java.util.List;
 import dataAccess.AccountDAO;
 import dataAccess.AccountDAOImpl;
 import entity.Account;
+import entity.EmailSender;
 import entity.Observable;
 import entity.Observer;
 
@@ -28,9 +29,12 @@ public class AccountService implements Observable{
 
     public void createAccount(Account account) {
 
+    	notifyEmailObserver();
     }
 
-    public void deposit(Account account) {
+    
+
+	public void deposit(Account account) {
     	notifyObservers();
 
 
@@ -73,10 +77,26 @@ public class AccountService implements Observable{
 		
 		if(observers !=null)
 		{
-			observers.forEach(o -> o.update());
+			observers.forEach(o -> {
+				if(o.getClass() !=EmailSender.class){
+					o.update();
+				}
+			});
 		}else{
 			System.out.println("Observers are empty");
 		}
 			
+	}
+	
+	private void notifyEmailObserver() {
+
+    	if(observers !=null)
+		{
+			observers.forEach(o -> {
+				if(o.getClass()==EmailSender.class){
+					o.update();
+				}
+			});
+		}
 	}
 }

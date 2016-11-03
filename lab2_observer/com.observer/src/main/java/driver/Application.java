@@ -1,6 +1,7 @@
 package driver;
 
 import entity.Account;
+import entity.EmailSender;
 import entity.Logger;
 import entity.SMSSender;
 import service.AccountService;
@@ -29,10 +30,11 @@ public class Application {
 		
 		Logger logger = new Logger(accService);
 		SMSSender smsSender=new SMSSender(accService);
-//		EmailSender emailSender=new EmailSender(accService);
+		EmailSender emailSender=new EmailSender(accService);
 		
 		
 		accService.deposit(new Account());
+		accService.createAccount(new Account());
 		
 			
     	
