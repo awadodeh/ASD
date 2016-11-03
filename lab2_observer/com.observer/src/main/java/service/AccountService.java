@@ -88,7 +88,7 @@ public class AccountService implements Observable{
 			
 	}
 	
-	private void notifyEmailObserver() {
+	public void notifyEmailObserver() {
 
     	if(observers !=null)
 		{
