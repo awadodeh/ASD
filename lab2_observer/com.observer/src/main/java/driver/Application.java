@@ -1,6 +1,8 @@
 package driver;
 
 import entity.Account;
+import entity.Logger;
+import entity.SMSSender;
 import service.AccountService;
 
 /**
@@ -8,7 +10,7 @@ import service.AccountService;
  */
 public class Application {
 
-    AccountService accountService;
+    private AccountService accountService;
     
     
     public Application() {
@@ -23,11 +25,16 @@ public class Application {
 
 	public static void main(String[] args){
 
-    	
-    	Application app = new Application();
-    	
-    	
-    	
+		AccountService accService = new AccountService();
+		
+		Logger logger = new Logger(accService);
+		SMSSender smsSender=new SMSSender(accService);
+//		EmailSender emailSender=new EmailSender(accService);
+		
+		
+		accService.deposit(new Account());
+		
+			
     	
     	
     }
