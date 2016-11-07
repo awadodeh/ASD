@@ -3,4 +3,12 @@
   <groupId>com.sigelton.org</groupId>
   <artifactId>com.sigelton.org</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+    <dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>20151123</version>
+	</dependency>
+  </dependencies>
+
 </project>

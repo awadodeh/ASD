@@ -10,9 +10,9 @@ This pattern involves a single class which is responsible to create an object wh
 
 #### Implementation
 
-We're going to create a SingleObject class. SingleObject class have its constructor as private and have a static instance of itself.
+Thread-Safe and a Fast Singleton Implementation – Singleton Design Pattern in java
 
-SingleObject class provides a static method to get its static instance to outside world. SingletonPatternDemo, our demo class will use SingleObject class to get a SingleObject object.
+Through this approach we provide the necessary thread-safety, NOT using Singleton instance is created at class-load time. We've used Simple Singleton Pattern: (Lazy Initialization + ThreadSafe with synchronized block)
 
 ----------
 
