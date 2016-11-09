@@ -12,12 +12,8 @@ public class Application {
     private AccountService accountService;
   
 	public static void main(String[] args){
-		AccountDAO accountDAO;
-		Application app = new Application(); 
+
 		
-		
-				
-		app.accountService.createAccount(new Account());
 		
     }
 

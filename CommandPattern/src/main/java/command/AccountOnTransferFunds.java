@@ -1,18 +1,25 @@
 package command;
 
-import dataAccess.AccountDAOImpl;
+import entity.Account;
+import service.Receiver;
 
-public class AccountOnTransferFunds implements Commmand{
+public class AccountOnTransferFunds implements Command{
 	
-	AccountDAOImpl accountDAOImpl;
+	Receiver receiver;
 	
-	public AccountOnTransferFunds(AccountDAOImpl accountDAOImpl) {
-		this.accountDAOImpl=accountDAOImpl;
+	public AccountOnTransferFunds(Receiver receiver) {
+		this.receiver=receiver;
 	}
 	
 	
 	public void excute() {
-		accountDAOImpl.updateAccount();
+		receiver.transferFunds(new Account());
+		
+	}
+
+
+	public void undo() {
+		
 		
 	}
 

@@ -1,19 +1,25 @@
 package command;
 
-import dataAccess.AccountDAOImpl;
+import entity.Account;
+import service.Receiver;
 
-public class AccountOnWithdraw implements Commmand{
+public class AccountOnWithdraw implements Command{
 
 
-	AccountDAOImpl accountDAOImpl;
+	Receiver receiver;
 	
-	public AccountOnWithdraw(AccountDAOImpl accountDAOImpl) {
-		this.accountDAOImpl=accountDAOImpl;
+	public AccountOnWithdraw(Receiver receiver) {
+		this.receiver=receiver;
 	}
 	
 	
 	public void excute() {
-		accountDAOImpl.updateAccount();
+		receiver.withdraw(new Account());
+		
+	}
+
+
+	public void undo() {
 		
 	}
 }
