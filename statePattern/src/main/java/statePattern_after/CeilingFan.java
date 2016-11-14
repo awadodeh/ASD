@@ -2,43 +2,64 @@ package statePattern_after;
 
 public class CeilingFan {
 	
-	final static int OFF = 0;
-	final static int LOW_SPEED = 1;
-	final static int MEDIUM_SPEED = 2;
-	final static int HIGH_SPEED = 3;
+	State offState;
+	State lowSpeedState;
+	State mediumSpeedState;
+	State highSpeedState;
 	
-	int current_state=0;
+	State state = offState;
+	
+	public CeilingFan() {
+		
+		 offState = new OffState(this);
+		 lowSpeedState = new LowSpeedState(this);
+		 mediumSpeedState = new MediumSpeedState(this);
+		 highSpeedState = new HighSpeedState(this);
+		 
+		 state = offState;
+		
+	}
 	
 	public void pullgreen() {
-		if (current_state == 0) {
-			current_state = 1;
-			System.out.println( "low speed" );
-		} else if (current_state == 1) {
-			current_state = 2;
-			System.out.println( "medium speed" );
-		} else if (current_state == 2) {
-			current_state = 3;
-			System.out.println( "high speed" );
-		} else {
-			current_state = 0;
-			System.out.println( "turning off" );
-		}
+//		if (state == 0) {
+//			state = 1;
+//			System.out.println( "low speed" );
+//		} else if (state == 1) {
+//			state = 2;
+//			System.out.println( "medium speed" );
+//		} else if (state == 2) {
+//			state = 3;
+//			System.out.println( "high speed" );
+//		} else {
+//			state = 0;
+//			System.out.println( "turning off" );
+//		}
+		
+		state.pullgreen();
 	}
 
 	public void pullred() {
-		if (current_state == 0) {
-			current_state = 3;
-			System.out.println( "high speed" );
-		} else if (current_state == 1) {
-			current_state = 0;
-			System.out.println( "turning off" );
-		} else if (current_state == 2) {
-			current_state = 1;
-			System.out.println( "low speed" );
-		} else {
-			current_state = 2;
-			System.out.println( "medium speed" );
-		}
+//		if (state == 0) {
+//			state = 3;
+//			System.out.println( "high speed" );
+//		} else if (state == 1) {
+//			state = 0;
+//			System.out.println( "turning off" );
+//		} else if (state == 2) {
+//			state = 1;
+//			System.out.println( "low speed" );
+//		} else {
+//			state = 2;
+//			System.out.println( "medium speed" );
+//		}
+		
+		state.pullred();
 	} 
 
+	
+	public void setState(State state) {
+		this.state = state;
+	}
+	
+	
 }
