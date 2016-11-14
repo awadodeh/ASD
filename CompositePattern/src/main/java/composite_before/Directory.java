@@ -1,4 +1,4 @@
-package composite;
+package composite_before;
 
 import java.util.ArrayList;
 import java.util.Collection;
