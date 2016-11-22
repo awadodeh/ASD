@@ -26,6 +26,7 @@ public class CreditCardEmailNotification extends EmailNotification {
             message.append("An amount of $" + amount);
             message.append(" has been charged from your credit card ending with");
             message.append(accountNumber.substring(accountNumber.length() - 4));
+
             sendEmail("donotreply@creditCard.com", email, message.toString());
         }
     }

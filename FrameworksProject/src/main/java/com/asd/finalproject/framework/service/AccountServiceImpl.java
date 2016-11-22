@@ -36,10 +36,11 @@ public class AccountServiceImpl implements AccountService{
             try {
                 account.withdraw(amount);
                 accountDAO.saveAccount(account);
-                account.notifyObservers(amount);
             } catch (InsufficientBalanceException e) {
                 e.printStackTrace();
             }
+
+            account.notifyObservers(amount);
         }
     }
 

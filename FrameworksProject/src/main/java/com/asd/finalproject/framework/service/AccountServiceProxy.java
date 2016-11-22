@@ -12,6 +12,7 @@ import java.util.Map;
 public class AccountServiceProxy implements AccountService {
 
     private AccountService accountService;
+    private Command command;
 
     public AccountServiceProxy(AccountService accountService) {
         this.accountService = accountService;
@@ -39,9 +40,9 @@ public class AccountServiceProxy implements AccountService {
 
     @Override
     public void withdraw(String accountNumber, Double amount) {
-        Command withdrawCommand = new WithdrawCommand(accountService, accountNumber, amount);
-
-        withdrawCommand.execute();
+        System.out.println("Calling withdraw on account " + accountNumber);
+        command = new WithdrawCommand(accountService, accountNumber, amount);
+        command.execute();
     }
 
     @Override
