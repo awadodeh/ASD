@@ -9,11 +9,11 @@ import java.util.Map;
 /**
  * Created by gedionz on 11/21/16.
  */
-public class AccountServiceInvoker implements AccountService {
+public class AccountServiceProxy implements AccountService {
 
     private AccountService accountService;
 
-    public AccountServiceInvoker(AccountService accountService) {
+    public AccountServiceProxy(AccountService accountService) {
         this.accountService = accountService;
     }
 
