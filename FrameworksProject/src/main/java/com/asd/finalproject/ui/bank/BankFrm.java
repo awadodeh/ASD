@@ -2,6 +2,20 @@ package com.asd.finalproject.ui.bank;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import com.asd.finalproject.banking.CheckingAccount;
+import com.asd.finalproject.banking.CompanyCustomer;
+import com.asd.finalproject.banking.IndividualCustomer;
+import com.asd.finalproject.banking.SavingAccount;
+import com.asd.finalproject.framework.entity.Account;
+import com.asd.finalproject.framework.entity.Address;
+import com.asd.finalproject.framework.entity.Customer;
+import com.asd.finalproject.framework.entity.USState;
+import com.asd.finalproject.framework.service.AccountService;
+import com.asd.finalproject.framework.service.factory.AccountDAOType;
+import com.asd.finalproject.framework.service.factory.AccountFactory;
+import com.asd.finalproject.framework.service.factory.AccountFactoryImpl;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
@@ -21,6 +35,12 @@ public class BankFrm extends JFrame
     private JScrollPane JScrollPane1;
     BankFrm myframe;
     private Object rowdata[];
+    AccountFactory accountFactoryImpl;
+    AccountService accountService;
+    Address address ;
+   
+    Customer customer;
+    Account account;
 
 	public BankFrm()
 	{
@@ -214,6 +234,19 @@ public class BankFrm extends JFrame
             rowdata[3] = "P";
             rowdata[4] = accountType;
             rowdata[5] = "0";
+            
+            accountFactoryImpl=new AccountFactoryImpl();
+            accountService=accountFactoryImpl.createAccountService(AccountDAOType.MOCK);
+            address = new Address(street, city, zip, USState.AL, "");
+            customer=new IndividualCustomer("12", clientName, address);
+            if(accountType.equalsIgnoreCase("saving")){
+            	account=new  SavingAccount(accountnr, customer);
+            }
+            else
+            	account=new  CheckingAccount(accountnr, customer);
+            
+            accountService.createAccount(account);
+            
             model.addRow(rowdata);
             JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
             newaccount=false;
@@ -243,6 +276,19 @@ public class BankFrm extends JFrame
             rowdata[3] = "C";
             rowdata[4] = accountType;
             rowdata[5] = "0";
+
+            accountFactoryImpl=new AccountFactoryImpl();
+            accountService=accountFactoryImpl.createAccountService(AccountDAOType.MOCK);
+            address = new Address(street, city, zip, USState.AL, "");
+            customer=new CompanyCustomer("12", clientName, address);
+            if(accountType.equalsIgnoreCase("saving")){
+            	account=new  SavingAccount(accountnr, customer);
+            }
+            else
+            	account=new  CheckingAccount(accountnr, customer);
+            
+            accountService.createAccount(account);
+            
             model.addRow(rowdata);
             JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
             newaccount=false;
