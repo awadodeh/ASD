@@ -14,10 +14,24 @@ public class AccountFactoryImpl  implements AccountFactory{
 
 //    private volatile AccountDAO mockDAO;
 //    private volatile AccountDAO inMemoryDAO;
+    private volatile static AccountFactory accountFactory;
 
-    private AccountDAO accountDAO;
-
+    private volatile AccountDAO accountDAO;
     private volatile AccountService accountService;
+
+    private  AccountFactoryImpl() {}
+/*
+    public static AccountFactory getAccountFactoryInstance() {
+        if(accountFactory == null) {
+            synchronized (AccountFactoryImpl.class) {
+                if(accountFactory == null) {
+                    accountFactory = new AccountFactoryImpl();
+                }
+            }
+        }
+        return  accountFactory;
+    }
+    */
 
     @Override
     public AccountService createAccountService(AccountDAOType accountDAOType) {
