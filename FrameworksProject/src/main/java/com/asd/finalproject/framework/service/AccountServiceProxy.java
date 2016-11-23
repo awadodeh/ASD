@@ -11,7 +11,7 @@ import java.util.Stack;
 /**
  * Created by gedionz on 11/21/16.
  */
-public abstract class AccountServiceProxy implements AccountService {
+public class AccountServiceProxy implements AccountService {
 
     private AccountService accountService;
     private Stack<Command> history = new Stack<>();
