@@ -4,12 +4,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import com.asd.finalproject.banking.entity.CheckingAccount;
-import com.asd.finalproject.banking.entity.CompanyCustomer;
-import com.asd.finalproject.banking.entity.IndividualCustomer;
 import com.asd.finalproject.banking.entity.SavingAccount;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Address;
+import com.asd.finalproject.framework.entity.Company;
 import com.asd.finalproject.framework.entity.Customer;
+import com.asd.finalproject.framework.entity.Individual;
 import com.asd.finalproject.framework.entity.USState;
 import com.asd.finalproject.framework.service.AccountService;
 import com.asd.finalproject.framework.service.factory.AccountDAOType;
@@ -19,6 +19,7 @@ import com.asd.finalproject.framework.service.factory.AccountFactoryImpl;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
+import java.time.LocalDate;
 
 /**
  * A basic JFC based application.
@@ -28,7 +29,10 @@ public class BankFrm extends JFrame
     /****
      * init variables in the object
      ****/
-    String accountnr, clientName,street,city,zip,state,accountType,clientType,amountDeposit;
+    String accountnr, clientName,street,city,zip,state,accountType,clientType,amountDeposit, dateOfBirth;
+    
+    int NoEmployees;
+    
     boolean newaccount;
     private DefaultTableModel model;
     private JTable JTable1;
@@ -237,7 +241,7 @@ public class BankFrm extends JFrame
             
      
             address = new Address(street, city, zip, USState.AL, "");
-            customer=new IndividualCustomer("12", clientName, address);
+            customer=new Individual("12", clientName, LocalDate.parse(dateOfBirth),address);
             if(accountType.equalsIgnoreCase("saving")){
             	account=new  SavingAccount(accountnr, customer);
             }
@@ -279,7 +283,10 @@ public class BankFrm extends JFrame
             accountFactoryImpl=new AccountFactoryImpl();
             accountService=accountFactoryImpl.createAccountService(AccountDAOType.MOCK);
             address = new Address(street, city, zip, USState.AL, "");
-            customer=new CompanyCustomer("12", clientName, address);
+            
+           
+            customer=new Company("12", clientName, NoEmployees,address);
+            
             if(accountType.equalsIgnoreCase("saving")){
             	account=new  SavingAccount(accountnr, customer);
             }

@@ -142,6 +142,9 @@ public class JDialog_AddCompAcc extends JDialog
        parentframe.city=JTextField_CT.getText();
        parentframe.zip=JTextField_ZIP.getText();
        parentframe.state=JTextField_ST.getText();
+       
+       parentframe.NoEmployees = Integer.parseInt(JTextField_NoOfEmp.getText());
+       
        if (JRadioButton_Chk.isSelected())
            parentframe.accountType="Ch";
            else
