@@ -50,7 +50,7 @@ public class AccountServiceProxy implements AccountService {
 
     @Override
     public void withdraw(String accountNumber, Double amount) {
-        System.out.println("Calling withdraw on account " + accountNumber);
+        System.out.println("AccountServiceProxy.withdraw() "+accountNumber);
 
         Command withdrawCommand = new WithdrawCommand(accountService, accountNumber, amount);
         withdrawCommand.execute();

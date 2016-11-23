@@ -341,11 +341,13 @@ public class BankFrm extends JFrame
             long currentamount = Long.parseLong(samount);
 		    long newamount=currentamount-deposit;
 		   
-            accountService.withdraw(accnr, (double) deposit);
+		    accountService.withdraw(accnr, (double) deposit);
+            
 		    model.setValueAt(String.valueOf(newamount),selection, 5);
 		    if (newamount <0){
 		       JOptionPane.showMessageDialog(JButton_Withdraw, " Account "+accnr+" : balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
 		    }
+		    
 		}
 
 
@@ -354,7 +356,7 @@ public class BankFrm extends JFrame
 	void JButtonAddinterest_actionPerformed(ActionEvent event)
 	{
 		  JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
-	    
+		  accountService.addInterest();
 	}
 	
 	private void init(){
