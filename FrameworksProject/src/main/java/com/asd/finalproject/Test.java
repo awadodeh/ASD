@@ -1,7 +1,7 @@
 package com.asd.finalproject;
 
-import com.asd.finalproject.framework.factory.AccountDAOType;
-import com.asd.finalproject.framework.factory.AccountFactoryImpl;
+import com.asd.finalproject.framework.service.factory.AccountDAOType;
+import com.asd.finalproject.framework.service.factory.AccountFactoryImpl;
 import com.asd.finalproject.framework.service.AccountService;
 
 public class Test {
