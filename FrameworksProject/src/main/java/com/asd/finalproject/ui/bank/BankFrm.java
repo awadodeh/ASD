@@ -357,11 +357,13 @@ public class BankFrm extends JFrame
 		   
 		    accountService.withdraw(accnr, (double) deposit);
             
-		    model.setValueAt(String.valueOf(newamount),selection, 5);
-		    if (newamount <0){
-		       JOptionPane.showMessageDialog(JButton_Withdraw, " Account "+accnr+" : balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
-		    }
 		    
+		    if (newamount <0){
+		    	newamount=currentamount;
+		       JOptionPane.showMessageDialog(JButton_Withdraw, " Account "+accnr+" : balance is : $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
+		       
+		    }
+		    model.setValueAt(String.valueOf(newamount),selection, 5);
 		}
 
 
