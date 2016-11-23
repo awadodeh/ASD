@@ -4,6 +4,7 @@ import com.asd.finalproject.creditcard.exception.LimitExceededException;
 import com.asd.finalproject.creditcard.service.CreditCardReport;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Customer;
+import com.asd.finalproject.framework.entity.Transaction;
 import com.asd.finalproject.framework.service.Report;
 
 import java.time.LocalDate;
@@ -23,13 +24,20 @@ public abstract class CreditCardAccount extends Account {
 
     @Override
     public void deposit(Double amount) {
-    	//TODO
+        balance += amount;
+        String description = "deposited";
+        Transaction transaction = new Transaction(amount, LocalDate.now(), description);
+        addTransaction(transaction);
     }
 
     @Override
     public void withdraw(Double amount) throws LimitExceededException{
         if((balance - amount) >= limit) {
             balance -= amount;
+
+            String description = "withdrawn";
+            Transaction transaction = new Transaction(amount, LocalDate.now(), description);
+            addTransaction(transaction);
         }else {
             throw new LimitExceededException("Credit account exceeded the limit");
         }
