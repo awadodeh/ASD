@@ -4,6 +4,7 @@ import com.asd.finalproject.framework.dataaccess.AccountDAO;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.service.exception.AccountException;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -61,5 +62,15 @@ public class AccountServiceImpl implements AccountService{
     public void addInterest() {
         Map<String, Account> allAccounts = getAllAccounts();
         allAccounts.forEach((accountNumber, account) -> account.addInterest());
+    }
+
+    @Override
+    public String generateReport(String accountNumber, LocalDate from, LocalDate to) {
+        Account account = getAccount(accountNumber);
+        if(account != null) {
+            return account.report(from, to).generateReport();
+        }
+
+        return null;
     }
 }

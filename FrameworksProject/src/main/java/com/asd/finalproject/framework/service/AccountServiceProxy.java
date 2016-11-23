@@ -5,6 +5,7 @@ import com.asd.finalproject.framework.specialstuff.Command;
 import com.asd.finalproject.framework.specialstuff.DepositCommand;
 import com.asd.finalproject.framework.specialstuff.WithdrawCommand;
 
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Stack;
 
@@ -61,5 +62,10 @@ public class AccountServiceProxy implements AccountService {
     @Override
     public void addInterest() {
         accountService.addInterest();
+    }
+
+    @Override
+    public String generateReport(String accountNumber, LocalDate from, LocalDate to) {
+        return accountService.generateReport(accountNumber, from, to);
     }
 }

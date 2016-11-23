@@ -1,8 +1,10 @@
 package com.asd.finalproject.creditcard.entity;
 
 import com.asd.finalproject.creditcard.exception.LimitExceededException;
+import com.asd.finalproject.creditcard.service.CreditCardReport;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Customer;
+import com.asd.finalproject.framework.service.Report;
 
 import java.time.LocalDate;
 
@@ -31,6 +33,20 @@ public abstract class CreditCardAccount extends Account {
         }else {
             throw new LimitExceededException("Credit account exceeded the limit");
         }
+    }
+
+    @Override
+    public void addInterest() {
+
+    }
+
+    @Override
+    public Report report(LocalDate from, LocalDate to) {
+        return new CreditCardReport(this, from, to);
+    }
+
+    public void setLimit(Double limit) {
+        this.limit = limit;
     }
 }
 

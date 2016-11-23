@@ -2,6 +2,7 @@ package com.asd.finalproject.framework.service;
 
 import com.asd.finalproject.framework.entity.Account;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -14,4 +15,5 @@ public interface AccountService {
     void deposit(String accountNumber, Double amount);
     void withdraw(String accountNumber, Double amount);
     void addInterest();
+    String generateReport(String accountNumber, LocalDate from, LocalDate to);
 }

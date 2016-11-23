@@ -1,10 +1,12 @@
 package com.asd.finalproject.framework.entity;
 
 
+import com.asd.finalproject.framework.service.Report;
 import com.asd.finalproject.framework.service.exception.AccountException;
 import com.asd.finalproject.framework.specialstuff.InterestStrategy;
 import com.asd.finalproject.framework.specialstuff.Observable;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +34,7 @@ public abstract class Account extends Observable{
         this.interestStrategy = interestStrategy;
     }
 
-    public void addInterest() {
-        deposit(interestStrategy.getInterest(balance));
-    }
+    public abstract void addInterest();
 
     public abstract void deposit(Double amount);
     public abstract void withdraw(Double amount) throws AccountException;
@@ -51,6 +51,10 @@ public abstract class Account extends Observable{
         return balance;
     }
 
+    public InterestStrategy getInterestStrategy() {
+        return interestStrategy;
+    }
+
     protected void addTransaction(Transaction transaction) {
         transactions.add(transaction);
     }
@@ -58,6 +62,8 @@ public abstract class Account extends Observable{
     public List<Transaction> getAllTransactions() {
         return transactions;
     }
+
+    public abstract Report report(LocalDate from, LocalDate to);
 
     @Override
     public boolean equals(Object o) {

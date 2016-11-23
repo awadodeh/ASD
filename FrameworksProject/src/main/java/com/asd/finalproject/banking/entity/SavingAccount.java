@@ -1,5 +1,6 @@
 package com.asd.finalproject.banking.entity;
 
+import com.asd.finalproject.banking.service.SavingInterestStrategy;
 import com.asd.finalproject.framework.entity.Customer;
 
 /**
@@ -9,6 +10,6 @@ public class SavingAccount extends BankAccount {
 
 	public SavingAccount(String accountNumber, Customer customer) {
 		super(accountNumber, customer);
-		
+		setInterestStrategy(new SavingInterestStrategy());
 	}
 }
