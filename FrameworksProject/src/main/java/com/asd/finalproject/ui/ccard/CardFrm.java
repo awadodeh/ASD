@@ -7,6 +7,7 @@ import com.asd.finalproject.creditcard.BronzeCreditCardAccount;
 import com.asd.finalproject.creditcard.GoldCreditCardAccount;
 import com.asd.finalproject.creditcard.IndividualCustomerCC;
 import com.asd.finalproject.creditcard.SilverCreditCardAccount;
+import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Address;
 import com.asd.finalproject.framework.entity.Customer;
 import com.asd.finalproject.framework.entity.USState;
@@ -33,6 +34,10 @@ public class CardFrm extends javax.swing.JFrame
     private JScrollPane JScrollPane1;
     CardFrm thisframe;
     private Object rowdata[];
+    
+    Address address;
+    Customer customer;
+    Account account;
     
 	public CardFrm()
 	{
@@ -230,35 +235,27 @@ public class CardFrm extends javax.swing.JFrame
             AccountFactory accountFactoryImpl = new AccountFactoryImpl();
             AccountService accountService = accountFactoryImpl.createAccountService(AccountDAOType.MOCK);
             
-//            clientName,street,city, zip, state,accountType,amountDeposit,expdate, ccnumber
-            
+            address = new Address(street, city, zip, USState.AL, "");
+        	customer = new IndividualCustomerCC("11", clientName, address);
+
             if(accountType.equalsIgnoreCase("silver")){
-            	
-            	Address address = new Address(street, city, zip, USState.AL, "");
-            	
-            	Customer customer = new IndividualCustomerCC("11", clientName, address);
-            	
-            	SilverCreditCardAccount account = new SilverCreditCardAccount(ccnumber,
+            	            	
+            	 account = new SilverCreditCardAccount(ccnumber,
             			customer, LocalDate.now());
             	
                 accountService.createAccount(account);
 
             }else if(accountType.equalsIgnoreCase("Bronze")){
-            	Address address = new Address(street, city, zip, USState.AL, "");
 
-            	Customer customer = new IndividualCustomerCC("11", clientName, address);
 
-            	BronzeCreditCardAccount account = new BronzeCreditCardAccount(ccnumber,
+            	account = new BronzeCreditCardAccount(ccnumber,
             			customer, LocalDate.now());
 
             	accountService.createAccount(account);
 
             }else if(accountType.equalsIgnoreCase("Gold")){
-            	Address address = new Address(street, city, zip, USState.AL, "");
 
-            	Customer customer = new IndividualCustomerCC("11", clientName, address);
-
-            	GoldCreditCardAccount account = new GoldCreditCardAccount(ccnumber,
+            	account = new GoldCreditCardAccount(ccnumber,
             			customer, LocalDate.now());
 
             	accountService.createAccount(account);
