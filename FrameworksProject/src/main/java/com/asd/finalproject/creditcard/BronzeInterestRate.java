@@ -8,6 +8,8 @@ import com.asd.finalproject.framework.specialstuff.InterestStrategy;
 public class BronzeInterestRate implements InterestStrategy {
     @Override
     public Double getInterest(Double balance) {
-        return null;
+    	double interest = 0;
+		interest = balance * 0.1;
+		return interest;
     }
 }
