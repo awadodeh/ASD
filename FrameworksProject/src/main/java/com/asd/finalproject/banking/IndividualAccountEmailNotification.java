@@ -21,11 +21,10 @@ public class IndividualAccountEmailNotification extends EmailNotification {
         String email = accountOwner.getAddress().getEmail();
         StringBuilder message = new StringBuilder();
 
-        if(amount > account.getBalance()) {
+
+        if(amount == null ) {
             message.append("Hello, " + name + "! ");
             message.append("Your account balance is insufficient to make the amount you were trying to withdraw from your account " + accountNumber);
-            message.append("{balance: " + account.getBalance() + ", amount: " + amount + "}");
-
         }else if(amount > 500.0) {
             Transaction lastTransaction = account.getAllTransactions().get(account.getAllTransactions().size() - 1);
             message.append("Hello, " + name + "! ");

@@ -39,10 +39,11 @@ public class AccountServiceProxy implements AccountService {
     public void deposit(String accountNumber, Double amount) {
         System.out.println("Calling withdraw on account " + accountNumber);
 
-        Command depositCommand = new DepositCommand(accountService, accountNumber, amount);
-        depositCommand.execute();
-
-        history.push(depositCommand);
+        if(amount != null && accountNumber != null && !accountNumber.isEmpty()) {
+            Command depositCommand = new DepositCommand(accountService, accountNumber, amount);
+            depositCommand.execute();
+            history.push(depositCommand);
+        }
     }
 
     @Override

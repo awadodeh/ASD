@@ -1,8 +1,8 @@
 package com.asd.finalproject.banking;
 
 import com.asd.finalproject.framework.entity.Account;
-import com.asd.finalproject.framework.entity.Address;
 import com.asd.finalproject.framework.entity.Customer;
+import com.asd.finalproject.framework.entity.Transaction;
 import com.asd.finalproject.framework.specialstuff.EmailNotification;
 import com.asd.finalproject.framework.specialstuff.Observable;
 
@@ -18,6 +18,18 @@ public class CompanyAccountEmailNotification extends EmailNotification {
 
         Customer company = account.getCustomer();
         String email = company.getAddress().getEmail();
+
+        StringBuilder message = new StringBuilder();
+        if(amount == null) {
+            message.append("You don't have sufficient balance to make the withdraw");
+        }else {
+            Transaction lastTransaction = account.getAllTransactions().get(account.getAllTransactions().size() - 1);
+            message.append("Account number: " + account.getAccountNumber());
+            message.append(" " + lastTransaction.getDescription());
+            message.append(" amount: " + lastTransaction.getAmount());
+            message.append(" at " + lastTransaction.getDate());
+        }
+        sendEmail("donotreply@bank.com", email, message.toString());
 
     }
 }

@@ -16,11 +16,11 @@ public class AccountServiceImpl implements AccountService{
         this.accountDAO = accountDAO;
     }
     public void createAccount(Account account) {
-
+        accountDAO.saveAccount(account);
     }
 
     public Account getAccount(String accountNumber) {
-        return null;
+        return accountDAO.loadAccount(accountNumber);
     }
 
     public Map<String, Account> getAllAccounts() {
@@ -28,7 +28,13 @@ public class AccountServiceImpl implements AccountService{
     }
 
     public void deposit(String accountNumber, Double amount) {
+        Account account = getAccount(accountNumber);
+        if(account != null) {
+            account.deposit(amount);
+            accountDAO.updateAccount(account);
 
+            account.notifyObservers(amount);
+        }
     }
 
     public void withdraw(String accountNumber, Double amount) {
@@ -36,8 +42,9 @@ public class AccountServiceImpl implements AccountService{
         if(account != null) {
             try {
                 account.withdraw(amount);
-                accountDAO.saveAccount(account);
+                accountDAO.updateAccount(account);
             } catch (AccountException e) {
+                amount = null;
                 e.printStackTrace();
             }
 
@@ -48,5 +55,6 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public void addInterest() {
         Map<String, Account> allAccounts = getAllAccounts();
+        allAccounts.forEach((accountNumber, account) -> account.addInterest());
     }
 }
