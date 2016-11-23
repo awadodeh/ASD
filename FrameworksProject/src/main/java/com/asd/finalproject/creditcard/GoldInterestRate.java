@@ -11,5 +11,6 @@ public class GoldInterestRate implements InterestStrategy {
 		double interest = 0;
 		interest = balance * 0.06;
 		return interest;
+		
 	}
 }

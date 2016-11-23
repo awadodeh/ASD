@@ -11,5 +11,6 @@ public class BronzeInterestRate implements InterestStrategy {
     	double interest = 0;
 		interest = balance * 0.1;
 		return interest;
+		
     }
 }

@@ -11,5 +11,6 @@ public class SilverInterestRate implements InterestStrategy {
     	double interest = 0;
 		interest = balance * 0.08;
 		return interest;
+		
     }
 }
