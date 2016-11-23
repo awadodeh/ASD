@@ -5,6 +5,8 @@ import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.service.exception.AccountException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -65,12 +67,15 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public String generateReport(String accountNumber, LocalDate from, LocalDate to) {
-        Account account = getAccount(accountNumber);
-        if(account != null) {
-            return account.report(from, to).generateReport();
-        }
+    public List<String> generateReport(String[] accountNumbers, LocalDate from, LocalDate to) {
+        List<String> reports = new ArrayList<>();
 
-        return null;
+        for(String accountNumber : accountNumbers) {
+            Account account = getAccount(accountNumber);
+            if(account != null) {
+                reports.add(account.report(from, to).toString());
+            }
+        }
+        return reports;
     }
 }
