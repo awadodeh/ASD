@@ -1,4 +1,4 @@
-package com.asd.finalproject.framework.specialstuff;
+package com.asd.finalproject.framework.service.command;
 
 import com.asd.finalproject.framework.service.AccountService;
 

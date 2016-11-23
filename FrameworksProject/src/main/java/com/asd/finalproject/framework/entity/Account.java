@@ -3,8 +3,8 @@ package com.asd.finalproject.framework.entity;
 
 import com.asd.finalproject.framework.service.Report;
 import com.asd.finalproject.framework.service.exception.AccountException;
-import com.asd.finalproject.framework.specialstuff.InterestStrategy;
-import com.asd.finalproject.framework.specialstuff.Observable;
+import com.asd.finalproject.framework.service.InterestStrategy;
+import com.asd.finalproject.framework.service.notification.Observable;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

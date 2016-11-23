@@ -2,8 +2,8 @@ package com.asd.finalproject.creditcard.service;
 
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Customer;
-import com.asd.finalproject.framework.specialstuff.EmailNotification;
-import com.asd.finalproject.framework.specialstuff.Observable;
+import com.asd.finalproject.framework.service.notification.EmailNotification;
+import com.asd.finalproject.framework.service.notification.Observable;
 
 /**
  * Created by gedionz on 11/22/16.

@@ -1,6 +1,6 @@
 package com.asd.finalproject.banking.service;
 
-import com.asd.finalproject.framework.specialstuff.InterestStrategy;
+import com.asd.finalproject.framework.service.InterestStrategy;
 
 public class CheckingInterestStrategy implements InterestStrategy {
 

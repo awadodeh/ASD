@@ -1,6 +1,4 @@
-package com.asd.finalproject.framework.specialstuff;
-
-import com.asd.finalproject.framework.entity.Account;
+package com.asd.finalproject.framework.service.notification;
 
 import java.util.ArrayList;
 import java.util.List;

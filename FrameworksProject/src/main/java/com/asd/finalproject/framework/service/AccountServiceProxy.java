@@ -1,9 +1,9 @@
 package com.asd.finalproject.framework.service;
 
 import com.asd.finalproject.framework.entity.Account;
-import com.asd.finalproject.framework.specialstuff.Command;
-import com.asd.finalproject.framework.specialstuff.DepositCommand;
-import com.asd.finalproject.framework.specialstuff.WithdrawCommand;
+import com.asd.finalproject.framework.service.command.Command;
+import com.asd.finalproject.framework.service.command.DepositCommand;
+import com.asd.finalproject.framework.service.command.WithdrawCommand;
 
 import java.time.LocalDate;
 import java.util.Map;

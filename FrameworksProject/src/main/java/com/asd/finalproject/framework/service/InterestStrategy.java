@@ -1,4 +1,4 @@
-package com.asd.finalproject.framework.specialstuff;
+package com.asd.finalproject.framework.service;
 
 /**
  * Created by gedionz on 11/21/16.
