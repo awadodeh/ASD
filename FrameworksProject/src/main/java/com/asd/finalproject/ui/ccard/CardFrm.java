@@ -2,7 +2,21 @@ package com.asd.finalproject.ui.ccard;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import com.asd.finalproject.creditcard.BronzeCreditCardAccount;
+import com.asd.finalproject.creditcard.GoldCreditCardAccount;
+import com.asd.finalproject.creditcard.IndividualCustomerCC;
+import com.asd.finalproject.creditcard.SilverCreditCardAccount;
+import com.asd.finalproject.framework.entity.Address;
+import com.asd.finalproject.framework.entity.Customer;
+import com.asd.finalproject.framework.entity.USState;
+import com.asd.finalproject.framework.service.AccountService;
+import com.asd.finalproject.framework.service.factory.AccountDAOType;
+import com.asd.finalproject.framework.service.factory.AccountFactory;
+import com.asd.finalproject.framework.service.factory.AccountFactoryImpl;
+
 import java.awt.*;
+import java.time.LocalDate;
 
 /**
  * A basic JFC based application.
@@ -157,6 +171,12 @@ public class CardFrm extends javax.swing.JFrame
 		}
 	}
 
+	
+	/**
+	 * Here basically we are handling our events
+	 * @author Awad
+	 *
+	 */
 	class SymAction implements java.awt.event.ActionListener
 	{
 		public void actionPerformed(java.awt.event.ActionEvent event)
@@ -164,12 +184,16 @@ public class CardFrm extends javax.swing.JFrame
 			Object object = event.getSource();
 			if (object == JButton_Exit)
 				JButtonExit_actionPerformed(event);
+			
 			else if (object == JButton_NewCCAccount)
 				JButtonNewCCAC_actionPerformed(event);
+			
 			else if (object == JButton_GenBill)
 				JButtonGenerateBill_actionPerformed(event);
+			
 			else if (object == JButton_Deposit)
 				JButtonDeposit_actionPerformed(event);
+			
 			else if (object == JButton_Withdraw)
 				JButtonWithdraw_actionPerformed(event);
 			
@@ -202,6 +226,46 @@ public class CardFrm extends javax.swing.JFrame
             rowdata[2] = expdate;
             rowdata[3] = accountType;
             rowdata[4] = "0";
+            
+            AccountFactory accountFactoryImpl = new AccountFactoryImpl();
+            AccountService accountService = accountFactoryImpl.createAccountService(AccountDAOType.MOCK);
+            
+//            clientName,street,city, zip, state,accountType,amountDeposit,expdate, ccnumber
+            
+            if(accountType.equalsIgnoreCase("silver")){
+            	
+            	Address address = new Address(street, city, zip, USState.AL, "");
+            	
+            	Customer customer = new IndividualCustomerCC("11", clientName, address);
+            	
+            	SilverCreditCardAccount account = new SilverCreditCardAccount(ccnumber,
+            			customer, LocalDate.now());
+            	
+                accountService.createAccount(account);
+
+            }else if(accountType.equalsIgnoreCase("Bronze")){
+            	Address address = new Address(street, city, zip, USState.AL, "");
+
+            	Customer customer = new IndividualCustomerCC("11", clientName, address);
+
+            	BronzeCreditCardAccount account = new BronzeCreditCardAccount(ccnumber,
+            			customer, LocalDate.now());
+
+            	accountService.createAccount(account);
+
+            }else if(accountType.equalsIgnoreCase("Gold")){
+            	Address address = new Address(street, city, zip, USState.AL, "");
+
+            	Customer customer = new IndividualCustomerCC("11", clientName, address);
+
+            	GoldCreditCardAccount account = new GoldCreditCardAccount(ccnumber,
+            			customer, LocalDate.now());
+
+            	accountService.createAccount(account);
+
+            }
+            
+            
             model.addRow(rowdata);
             JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
             newaccount=false;

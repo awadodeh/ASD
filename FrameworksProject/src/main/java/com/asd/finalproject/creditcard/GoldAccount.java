@@ -11,6 +11,7 @@ import java.time.LocalDate;
 public class GoldAccount extends CreditCardAccount{
     public GoldAccount(String accountNumber, Customer customer) {
         super(accountNumber,customer, LocalDate.now());
+        
         setInterestStrategy(new GoldInterestRate());
     }
 

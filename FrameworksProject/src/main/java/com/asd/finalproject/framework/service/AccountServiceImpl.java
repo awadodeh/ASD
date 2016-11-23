@@ -15,6 +15,9 @@ public class AccountServiceImpl implements AccountService{
         this.accountDAO = accountDAO;
     }
     public void createAccount(Account account) {
+    	
+    	System.out.println("AccountServiceImpl.createAccount() with accountNO. " + account.getAccountNumber() );
+    	
         accountDAO.saveAccount(account);
     }
 
