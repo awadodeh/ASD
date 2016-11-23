@@ -9,7 +9,7 @@ import com.asd.finalproject.framework.specialstuff.Observable;
 /**
  * Created by gedionz on 11/22/16.
  */
-public class PersonalAccountEmailNotification extends EmailNotification {
+public class IndividualAccountEmailNotification extends EmailNotification {
     @Override
     public void update(Observable observable, Object arg) {
         Account account = (Account)observable;

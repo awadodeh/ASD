@@ -4,6 +4,8 @@ import com.asd.finalproject.framework.dataaccess.AccountDAO;
 import com.asd.finalproject.framework.dataaccess.AccountDAOImpl;
 import com.asd.finalproject.framework.dataaccess.AccountDAOMock;
 import com.asd.finalproject.framework.service.AccountService;
+import com.asd.finalproject.framework.service.AccountServiceImpl;
+import com.asd.finalproject.framework.service.AccountServiceProxy;
 
 /**
  * Created by gedionz on 11/22/16.
@@ -12,6 +14,7 @@ public class AccountFactoryImpl  implements AccountFactory{
 
     private volatile AccountDAO mockDAO;
     private volatile AccountDAO inMemoryDAO;
+    private volatile AccountService accountService;
 
     @Override
     public AccountDAO createAccountDAO(AccountDAOType accountDAOType) {
@@ -22,7 +25,6 @@ public class AccountFactoryImpl  implements AccountFactory{
                 break;
             case MOCK:
                 accountDAO = createMockDAO();
-                break;
             default:
         }
         return accountDAO;
@@ -30,8 +32,19 @@ public class AccountFactoryImpl  implements AccountFactory{
 
 
     @Override
-    public AccountService createAccountService() {
-        return null;
+    public AccountService createAccountService(AccountDAOType accountDAOType) {
+        if(accountService == null) {
+            synchronized (AccountFactoryImpl.class) {
+                if(accountService == null) {
+                    accountService = new AccountServiceProxy(
+                            new AccountServiceImpl(
+                                    createAccountDAO(accountDAOType)
+                            )
+                    );
+                }
+            }
+        }
+        return accountService;
     }
 
     private AccountDAO createInMemoryDAO() {

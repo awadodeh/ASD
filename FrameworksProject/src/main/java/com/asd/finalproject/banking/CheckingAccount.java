@@ -1,7 +1,6 @@
 package com.asd.finalproject.banking;
 
 import com.asd.finalproject.framework.entity.Customer;
-import com.asd.finalproject.framework.specialstuff.InsufficientBalanceException;
 
 /**
  * Created by gedionz on 11/21/16.

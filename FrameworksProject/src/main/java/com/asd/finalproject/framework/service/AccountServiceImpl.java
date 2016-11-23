@@ -2,7 +2,8 @@ package com.asd.finalproject.framework.service;
 
 import com.asd.finalproject.framework.dataaccess.AccountDAO;
 import com.asd.finalproject.framework.entity.Account;
-import com.asd.finalproject.framework.specialstuff.InsufficientBalanceException;
+import com.asd.finalproject.banking.InsufficientBalanceException;
+import com.asd.finalproject.framework.specialstuff.AccountException;
 
 import java.util.Map;
 
@@ -36,7 +37,7 @@ public class AccountServiceImpl implements AccountService{
             try {
                 account.withdraw(amount);
                 accountDAO.saveAccount(account);
-            } catch (InsufficientBalanceException e) {
+            } catch (AccountException e) {
                 e.printStackTrace();
             }
 
@@ -44,7 +45,8 @@ public class AccountServiceImpl implements AccountService{
         }
     }
 
-    public void addInterest(String accountNumber, Double amount) {
-
+    @Override
+    public void addInterest() {
+        Map<String, Account> allAccounts = getAllAccounts();
     }
 }

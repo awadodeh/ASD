@@ -2,7 +2,6 @@ package com.asd.finalproject.creditcard;
 
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Customer;
-import com.asd.finalproject.framework.specialstuff.InsufficientBalanceException;
 
 import java.time.LocalDate;
 
@@ -25,11 +24,11 @@ public abstract class CreditCardAccount extends Account {
     }
 
     @Override
-    public void withdraw(Double amount) throws InsufficientBalanceException{
+    public void withdraw(Double amount) throws LimitExceededException{
         if((balance - amount) >= limit) {
             balance -= amount;
         }else {
-            throw new InsufficientBalanceException();
+            throw new LimitExceededException("Credit account exceeded the limit");
         }
     }
 }

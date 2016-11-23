@@ -3,7 +3,6 @@ package com.asd.finalproject.banking;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Customer;
 import com.asd.finalproject.framework.entity.Transaction;
-import com.asd.finalproject.framework.specialstuff.InsufficientBalanceException;
 
 import java.time.LocalDate;
 
@@ -18,6 +17,9 @@ public abstract class BankAccount extends Account{
     @Override
     public void deposit(Double amount) {
         balance += balance;
+        String description = "deposited";
+        Transaction transaction = new Transaction(amount, LocalDate.now(), description);
+        addTransaction(transaction);
     }
 
     @Override

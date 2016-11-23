@@ -8,5 +8,5 @@ import com.asd.finalproject.framework.service.AccountService;
  */
 public interface AccountFactory {
     AccountDAO createAccountDAO(AccountDAOType accountDAOType);
-    AccountService createAccountService();
+    AccountService createAccountService(AccountDAOType accountDAOType);
 }

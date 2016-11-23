@@ -13,5 +13,5 @@ public interface AccountService {
     Map<String, Account> getAllAccounts();
     void deposit(String accountNumber, Double amount);
     void withdraw(String accountNumber, Double amount);
-    void addInterest(String accountNumber, Double amount);
+    void addInterest();
 }

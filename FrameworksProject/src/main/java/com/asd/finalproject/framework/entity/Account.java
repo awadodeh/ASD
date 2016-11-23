@@ -1,7 +1,7 @@
 package com.asd.finalproject.framework.entity;
 
 
-import com.asd.finalproject.framework.specialstuff.InsufficientBalanceException;
+import com.asd.finalproject.framework.specialstuff.AccountException;
 import com.asd.finalproject.framework.specialstuff.InterestStrategy;
 import com.asd.finalproject.framework.specialstuff.Observable;
 
@@ -23,7 +23,7 @@ public abstract class Account extends Observable{
     public Account(String accountNumber, Customer customer) {
         this.customer = customer;
         this.accountNumber = accountNumber;
-
+        customer.addAccount(this);
         transactions = new ArrayList<>();
     }
 
@@ -37,7 +37,7 @@ public abstract class Account extends Observable{
     }
 
     public abstract void deposit(Double amount);
-    public abstract void withdraw(Double amount) throws InsufficientBalanceException;
+    public abstract void withdraw(Double amount) throws AccountException;
 
     public String getAccountNumber() {
         return accountNumber;
@@ -51,10 +51,6 @@ public abstract class Account extends Observable{
         return balance;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
-
     protected void addTransaction(Transaction transaction) {
         transactions.add(transaction);
     }
@@ -63,4 +59,19 @@ public abstract class Account extends Observable{
         return transactions;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Account account = (Account) o;
+
+        return accountNumber.equals(account.accountNumber);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return accountNumber.hashCode();
+    }
 }
