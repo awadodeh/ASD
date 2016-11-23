@@ -112,7 +112,7 @@ public class BankFrm extends JFrame
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
 		JButton_Addinterest.addActionListener(lSymAction);
-
+		init();
 	}
 
 
@@ -235,8 +235,7 @@ public class BankFrm extends JFrame
             rowdata[4] = accountType;
             rowdata[5] = "0";
             
-            accountFactoryImpl=new AccountFactoryImpl();
-            accountService=accountFactoryImpl.createAccountService(AccountDAOType.MOCK);
+     
             address = new Address(street, city, zip, USState.AL, "");
             customer=new IndividualCustomer("12", clientName, address);
             if(accountType.equalsIgnoreCase("saving")){
@@ -310,9 +309,14 @@ public class BankFrm extends JFrame
 
 		    // compute new amount
             long deposit = Long.parseLong(amountDeposit);
+            
             String samount = (String)model.getValueAt(selection, 5);
             long currentamount = Long.parseLong(samount);
 		    long newamount=currentamount+deposit;
+		   
+		
+            accountService.deposit(accnr,(double) deposit);
+		    
 		    model.setValueAt(String.valueOf(newamount),selection, 5);
 		}
 
@@ -336,6 +340,8 @@ public class BankFrm extends JFrame
             String samount = (String)model.getValueAt(selection, 5);
             long currentamount = Long.parseLong(samount);
 		    long newamount=currentamount-deposit;
+		   
+            accountService.withdraw(accnr, (double) deposit);
 		    model.setValueAt(String.valueOf(newamount),selection, 5);
 		    if (newamount <0){
 		       JOptionPane.showMessageDialog(JButton_Withdraw, " Account "+accnr+" : balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
@@ -349,5 +355,10 @@ public class BankFrm extends JFrame
 	{
 		  JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
 	    
+	}
+	
+	private void init(){
+		 accountFactoryImpl=new AccountFactoryImpl();
+         accountService=accountFactoryImpl.createAccountService(AccountDAOType.MOCK);
 	}
 }
