@@ -27,7 +27,7 @@ public class AccountServiceImpl implements AccountService{
     }
 
     public Map<String, Account> getAllAccounts() {
-        return null;
+        return accountDAO.getAllAccounts();
     }
 
     public void deposit(String accountNumber, Double amount) {
