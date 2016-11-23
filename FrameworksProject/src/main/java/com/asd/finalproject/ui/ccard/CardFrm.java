@@ -5,11 +5,11 @@ import javax.swing.table.DefaultTableModel;
 
 import com.asd.finalproject.creditcard.entity.BronzeCreditCardAccount;
 import com.asd.finalproject.creditcard.entity.GoldCreditCardAccount;
-import com.asd.finalproject.creditcard.entity.IndividualCustomerCC;
 import com.asd.finalproject.creditcard.entity.SilverCreditCardAccount;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Address;
 import com.asd.finalproject.framework.entity.Customer;
+import com.asd.finalproject.framework.entity.Individual;
 import com.asd.finalproject.framework.entity.USState;
 import com.asd.finalproject.framework.service.AccountService;
 import com.asd.finalproject.framework.service.factory.AccountDAOType;
@@ -28,6 +28,9 @@ public class CardFrm extends javax.swing.JFrame
      * init variables in the object
      ****/
     String clientName,street,city, zip, state,accountType,amountDeposit,expdate, ccnumber;
+    
+    String dateOfBirth;
+    
     boolean newaccount;
     private DefaultTableModel model;
     private JTable JTable1;
@@ -238,7 +241,8 @@ public class CardFrm extends javax.swing.JFrame
             rowdata[4] = "0";
             
             address = new Address(street, city, zip, USState.AL, "");
-        	customer = new IndividualCustomerCC("11", clientName, address);
+            
+        	customer = new Individual("11", clientName, LocalDate.now() ,address);
 
             if(accountType.equalsIgnoreCase("silver")){
             	            	

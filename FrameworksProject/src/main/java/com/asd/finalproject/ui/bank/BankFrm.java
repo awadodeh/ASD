@@ -240,7 +240,7 @@ public class BankFrm extends JFrame
             rowdata[5] = "0";
             
      
-            address = new Address(street, city, zip, USState.AL, "");
+            address = new Address(street, city, zip, USState.AL, "dontReply@gmail.com");
             customer=new Individual("12", clientName, LocalDate.parse(dateOfBirth),address);
             if(accountType.equalsIgnoreCase("saving")){
             	account=new  SavingAccount(accountnr, customer);

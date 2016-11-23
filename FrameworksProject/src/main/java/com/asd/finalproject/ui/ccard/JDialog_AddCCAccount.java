@@ -1,4 +1,7 @@
 package com.asd.finalproject.ui.ccard;
+
+import java.time.LocalDate;
+
 /*
 		A basic implementation of the JDialog class.
 */
@@ -191,6 +194,10 @@ public class JDialog_AddCCAccount extends javax.swing.JDialog
        parentframe.state=JTextField_ST.getText();
        parentframe.ccnumber=JTextField_CCNR.getText();
        parentframe.expdate=JTextField_ExpDate.getText();
+       
+       parentframe.dateOfBirth=LocalDate.now().toString();
+
+       
        if (JRadioButton_Gold.isSelected())
            parentframe.accountType="Gold";
            else{
