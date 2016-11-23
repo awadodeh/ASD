@@ -3,10 +3,10 @@ package com.asd.finalproject.ui.ccard;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import com.asd.finalproject.creditcard.BronzeCreditCardAccount;
-import com.asd.finalproject.creditcard.GoldCreditCardAccount;
-import com.asd.finalproject.creditcard.IndividualCustomerCC;
-import com.asd.finalproject.creditcard.SilverCreditCardAccount;
+import com.asd.finalproject.creditcard.entity.BronzeCreditCardAccount;
+import com.asd.finalproject.creditcard.entity.GoldCreditCardAccount;
+import com.asd.finalproject.creditcard.entity.IndividualCustomerCC;
+import com.asd.finalproject.creditcard.entity.SilverCreditCardAccount;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Address;
 import com.asd.finalproject.framework.entity.Customer;

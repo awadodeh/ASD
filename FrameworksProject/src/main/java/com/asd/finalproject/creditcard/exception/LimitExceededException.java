@@ -1,4 +1,4 @@
-package com.asd.finalproject.creditcard;
+package com.asd.finalproject.creditcard.exception;
 
 import com.asd.finalproject.framework.service.exception.AccountException;
 

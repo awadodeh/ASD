@@ -1,5 +1,6 @@
-package com.asd.finalproject.creditcard;
+package com.asd.finalproject.creditcard.entity;
 
+import com.asd.finalproject.creditcard.service.BronzeInterestRate;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Customer;
 

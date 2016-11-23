@@ -1,6 +1,7 @@
-package com.asd.finalproject.creditcard;
+package com.asd.finalproject.creditcard.entity;
 
 
+import com.asd.finalproject.creditcard.service.GoldInterestRate;
 import com.asd.finalproject.framework.entity.Customer;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package com.asd.finalproject.creditcard;
+package com.asd.finalproject.creditcard.service;
 
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Customer;
