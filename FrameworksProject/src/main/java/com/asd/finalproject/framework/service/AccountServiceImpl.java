@@ -79,7 +79,7 @@ public class AccountServiceImpl implements AccountService{
         for(String accountNumber : accountNumbers) {
             Account account = getAccount(accountNumber);
             if(account != null) {
-                reports.add(account.report(from, to).toString());
+                reports.add(account.report(from, to).generateReport());
             }
         }
         return reports;
