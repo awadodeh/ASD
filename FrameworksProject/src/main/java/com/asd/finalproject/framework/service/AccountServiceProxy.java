@@ -3,6 +3,7 @@ package com.asd.finalproject.framework.service;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.service.command.Command;
 import com.asd.finalproject.framework.service.command.DepositCommand;
+import com.asd.finalproject.framework.service.command.InterestCommand;
 import com.asd.finalproject.framework.service.command.WithdrawCommand;
 
 import java.time.LocalDate;
@@ -52,7 +53,7 @@ public class AccountServiceProxy implements AccountService {
 
     @Override
     public void withdraw(String accountNumber, Double amount) {
-        System.out.println("AccountServiceProxy.withdraw() "+accountNumber);
+        System.out.println("AccountServiceProxy.withdraw() " + accountNumber);
 
         Command withdrawCommand = new WithdrawCommand(accountService, accountNumber, amount);
         withdrawCommand.execute();
@@ -62,7 +63,11 @@ public class AccountServiceProxy implements AccountService {
 
     @Override
     public void addInterest() {
-        accountService.addInterest();
+        System.out.println("AccountServiceProxy.addInterest() ");
+        Command interestCommand = new InterestCommand(accountService);
+        interestCommand.execute();
+
+        history.push(interestCommand);
     }
 
     @Override

@@ -34,7 +34,7 @@ public abstract class Account extends Observable{
         this.interestStrategy = interestStrategy;
     }
 
-    public abstract void addInterest();
+    public abstract void addInterest() throws AccountException;
 
     public abstract void deposit(Double amount);
     public abstract void withdraw(Double amount) throws AccountException;

@@ -63,7 +63,13 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public void addInterest() {
         Map<String, Account> allAccounts = getAllAccounts();
-        allAccounts.forEach((accountNumber, account) -> account.addInterest());
+        allAccounts.forEach((accountNumber, account) -> {
+            try {
+                account.addInterest();
+            }catch (AccountException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     @Override

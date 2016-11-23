@@ -36,8 +36,8 @@ public abstract class CreditCardAccount extends Account {
     }
 
     @Override
-    public void addInterest() {
-
+    public void addInterest() throws LimitExceededException {
+        withdraw(getInterestStrategy().getInterest(balance));
     }
 
     @Override
