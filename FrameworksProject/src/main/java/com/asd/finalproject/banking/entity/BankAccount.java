@@ -29,11 +29,13 @@ public abstract class BankAccount extends Account{
     public void withdraw(Double amount) throws InsufficientBalanceException {
         if((balance - amount) < 0 ) {
             throw new InsufficientBalanceException();
+        }else{
+			balance -= amount;
+			String description = "withdrawn";
+			Transaction transaction = new Transaction(amount, LocalDate.now(), description);
+			addTransaction(transaction);
         }
-        balance -= amount;
-        String description = "withdrawn";
-        Transaction transaction = new Transaction(amount, LocalDate.now(), description);
-        addTransaction(transaction);
+       
     }
 
     @Override
