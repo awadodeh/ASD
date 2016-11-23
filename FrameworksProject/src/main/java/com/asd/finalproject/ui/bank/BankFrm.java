@@ -3,10 +3,10 @@ package com.asd.finalproject.ui.bank;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import com.asd.finalproject.banking.CheckingAccount;
-import com.asd.finalproject.banking.CompanyCustomer;
-import com.asd.finalproject.banking.IndividualCustomer;
-import com.asd.finalproject.banking.SavingAccount;
+import com.asd.finalproject.banking.entity.CheckingAccount;
+import com.asd.finalproject.banking.entity.CompanyCustomer;
+import com.asd.finalproject.banking.entity.IndividualCustomer;
+import com.asd.finalproject.banking.entity.SavingAccount;
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Address;
 import com.asd.finalproject.framework.entity.Customer;

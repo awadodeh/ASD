@@ -1,4 +1,4 @@
-package com.asd.finalproject.banking;
+package com.asd.finalproject.banking.service;
 
 import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Customer;

@@ -1,4 +1,4 @@
-package com.asd.finalproject.banking;
+package com.asd.finalproject.banking.exception;
 
 import com.asd.finalproject.framework.service.exception.AccountException;
 
