@@ -1,6 +1,5 @@
-package com.asd.finalproject.framework.factory;
+package com.asd.finalproject.framework.service.factory;
 
-import com.asd.finalproject.framework.dataaccess.AccountDAO;
 import com.asd.finalproject.framework.service.AccountService;
 
 /**

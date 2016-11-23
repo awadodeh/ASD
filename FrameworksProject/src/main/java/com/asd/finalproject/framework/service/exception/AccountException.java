@@ -1,4 +1,4 @@
-package com.asd.finalproject.framework.specialstuff;
+package com.asd.finalproject.framework.service.exception;
 
 /**
  * Created by gedionz on 11/22/16.

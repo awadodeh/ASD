@@ -1,7 +1,7 @@
 package com.asd.finalproject.framework.entity;
 
 
-import com.asd.finalproject.framework.specialstuff.AccountException;
+import com.asd.finalproject.framework.service.exception.AccountException;
 import com.asd.finalproject.framework.specialstuff.InterestStrategy;
 import com.asd.finalproject.framework.specialstuff.Observable;
 

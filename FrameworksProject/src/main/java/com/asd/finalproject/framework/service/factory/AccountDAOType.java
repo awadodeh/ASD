@@ -1,4 +1,4 @@
-package com.asd.finalproject.framework.factory;
+package com.asd.finalproject.framework.service.factory;
 
 /**
  * Created by gedionz on 11/22/16.
