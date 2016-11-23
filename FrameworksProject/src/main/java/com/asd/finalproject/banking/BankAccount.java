@@ -16,7 +16,7 @@ public abstract class BankAccount extends Account{
 
     @Override
     public void deposit(Double amount) {
-        balance += balance;
+        balance += amount;
         String description = "deposited";
         Transaction transaction = new Transaction(amount, LocalDate.now(), description);
         addTransaction(transaction);

@@ -37,7 +37,8 @@ public class AccountServiceProxy implements AccountService {
 
     @Override
     public void deposit(String accountNumber, Double amount) {
-        System.out.println("Calling withdraw on account " + accountNumber);
+        
+        System.out.println("AccountServiceProxy.deposit() "+accountNumber);
 
         if(amount != null && accountNumber != null && !accountNumber.isEmpty()) {
             Command depositCommand = new DepositCommand(accountService, accountNumber, amount);
@@ -49,7 +50,7 @@ public class AccountServiceProxy implements AccountService {
 
     @Override
     public void withdraw(String accountNumber, Double amount) {
-        System.out.println("Calling withdraw on account " + accountNumber);
+        System.out.println("AccountServiceProxy.withdraw() "+accountNumber);
 
         Command withdrawCommand = new WithdrawCommand(accountService, accountNumber, amount);
         withdrawCommand.execute();

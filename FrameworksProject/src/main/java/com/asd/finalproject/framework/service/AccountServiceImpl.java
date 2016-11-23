@@ -30,7 +30,10 @@ public class AccountServiceImpl implements AccountService{
     }
 
     public void deposit(String accountNumber, Double amount) {
-        Account account = getAccount(accountNumber);
+    	
+    	System.out.println("AccountServiceImpl.deposit() with account No: " + accountNumber );
+        
+    	Account account = getAccount(accountNumber);
         if(account != null) {
             account.deposit(amount);
             accountDAO.updateAccount(account);

@@ -7,6 +7,7 @@ import com.asd.finalproject.creditcard.BronzeCreditCardAccount;
 import com.asd.finalproject.creditcard.GoldCreditCardAccount;
 import com.asd.finalproject.creditcard.IndividualCustomerCC;
 import com.asd.finalproject.creditcard.SilverCreditCardAccount;
+import com.asd.finalproject.framework.entity.Account;
 import com.asd.finalproject.framework.entity.Address;
 import com.asd.finalproject.framework.entity.Customer;
 import com.asd.finalproject.framework.entity.USState;
@@ -33,6 +34,13 @@ public class CardFrm extends javax.swing.JFrame
     private JScrollPane JScrollPane1;
     CardFrm thisframe;
     private Object rowdata[];
+    
+    Address address;
+    Customer customer;
+    Account account;
+    
+    AccountFactory accountFactoryImpl;
+	AccountService accountService;
     
 	public CardFrm()
 	{
@@ -97,6 +105,8 @@ public class CardFrm extends javax.swing.JFrame
 		JButton_GenBill.addActionListener(lSymAction);
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
+		
+		init();
 		
 	}
 
@@ -227,38 +237,27 @@ public class CardFrm extends javax.swing.JFrame
             rowdata[3] = accountType;
             rowdata[4] = "0";
             
-            AccountFactory accountFactoryImpl = new AccountFactoryImpl();
-            AccountService accountService = accountFactoryImpl.createAccountService(AccountDAOType.MOCK);
-            
-//            clientName,street,city, zip, state,accountType,amountDeposit,expdate, ccnumber
-            
+            address = new Address(street, city, zip, USState.AL, "");
+        	customer = new IndividualCustomerCC("11", clientName, address);
+
             if(accountType.equalsIgnoreCase("silver")){
-            	
-            	Address address = new Address(street, city, zip, USState.AL, "");
-            	
-            	Customer customer = new IndividualCustomerCC("11", clientName, address);
-            	
-            	SilverCreditCardAccount account = new SilverCreditCardAccount(ccnumber,
+            	            	
+            	 account = new SilverCreditCardAccount(ccnumber,
             			customer, LocalDate.now());
             	
                 accountService.createAccount(account);
 
             }else if(accountType.equalsIgnoreCase("Bronze")){
-            	Address address = new Address(street, city, zip, USState.AL, "");
 
-            	Customer customer = new IndividualCustomerCC("11", clientName, address);
 
-            	BronzeCreditCardAccount account = new BronzeCreditCardAccount(ccnumber,
+            	account = new BronzeCreditCardAccount(ccnumber,
             			customer, LocalDate.now());
 
             	accountService.createAccount(account);
 
             }else if(accountType.equalsIgnoreCase("Gold")){
-            	Address address = new Address(street, city, zip, USState.AL, "");
 
-            	Customer customer = new IndividualCustomerCC("11", clientName, address);
-
-            	GoldCreditCardAccount account = new GoldCreditCardAccount(ccnumber,
+            	account = new GoldCreditCardAccount(ccnumber,
             			customer, LocalDate.now());
 
             	accountService.createAccount(account);
@@ -285,22 +284,26 @@ public class CardFrm extends javax.swing.JFrame
 
 	void JButtonDeposit_actionPerformed(java.awt.event.ActionEvent event)
 	{
-	    // get selected name
-        int selection = JTable1.getSelectionModel().getMinSelectionIndex();
-        if (selection >=0){
-            String name = (String)model.getValueAt(selection, 0);
-    	    
-		    //Show the dialog for adding deposit amount for the current mane
-		    JDialog_Deposit dep = new JDialog_Deposit(thisframe,name);
-		    dep.setBounds(430, 15, 275, 140);
-		    dep.show();
-    		
-		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 4);
-            long currentamount = Long.parseLong(samount);
-		    long newamount=currentamount+deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 4);
+		// get selected name
+		int selection = JTable1.getSelectionModel().getMinSelectionIndex();
+		if (selection >=0){
+			String name = (String)model.getValueAt(selection, 0);
+
+			//Show the dialog for adding deposit amount for the current mane
+			JDialog_Deposit dep = new JDialog_Deposit(thisframe,name);
+			dep.setBounds(430, 15, 275, 140);
+			dep.show();
+
+			// compute new amount
+			long deposit = Long.parseLong(amountDeposit);
+			String samount = (String)model.getValueAt(selection, 4);
+			long currentamount = Long.parseLong(samount);
+			long newamount=currentamount+deposit;
+
+			String ccNo = (String)model.getValueAt(selection, 1);
+			accountService.deposit(ccNo, (double) deposit);
+
+			model.setValueAt(String.valueOf(newamount),selection, 4);
 		}
 		
 		
@@ -324,12 +327,29 @@ public class CardFrm extends javax.swing.JFrame
             long currentamount = Long.parseLong(samount);
 		    long newamount=currentamount-deposit;
 		    model.setValueAt(String.valueOf(newamount),selection, 4);
+		    
+		    String ccNo = (String)model.getValueAt(selection, 1);
+	    	accountService.withdraw(ccNo, (double) deposit);
+	    	
 		    if (newamount <0){
-		       JOptionPane.showMessageDialog(JButton_Withdraw, " "+name+" Your balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
-		    }
+		    	JOptionPane.showMessageDialog(JButton_Withdraw, " "+
+		    			name+" Your balance is negative: $"+String.valueOf(newamount)+
+		    			" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
+  
+		    }			
 		}
 		
 		
+	}
+	
+	
+	/**
+	 * initializing instance variables 
+	 */
+	private void init(){
+
+		accountFactoryImpl = new AccountFactoryImpl();
+		accountService = accountFactoryImpl.createAccountService(AccountDAOType.MOCK);
 	}
 	
 }
