@@ -42,6 +42,7 @@ public class AccountServiceProxy implements AccountService {
         if(amount != null && accountNumber != null && !accountNumber.isEmpty()) {
             Command depositCommand = new DepositCommand(accountService, accountNumber, amount);
             depositCommand.execute();
+
             history.push(depositCommand);
         }
     }

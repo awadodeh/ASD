@@ -29,6 +29,7 @@ public class CompanyAccountEmailNotification extends EmailNotification {
             message.append(" amount: " + lastTransaction.getAmount());
             message.append(" at " + lastTransaction.getDate());
         }
+        
         sendEmail("donotreply@bank.com", email, message.toString());
 
     }

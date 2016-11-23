@@ -12,30 +12,20 @@ import com.asd.finalproject.framework.service.AccountServiceProxy;
  */
 public class AccountFactoryImpl  implements AccountFactory{
 
-    private volatile AccountDAO mockDAO;
-    private volatile AccountDAO inMemoryDAO;
+//    private volatile AccountDAO mockDAO;
+//    private volatile AccountDAO inMemoryDAO;
+
+    private AccountDAO accountDAO;
+
     private volatile AccountService accountService;
-
-    @Override
-    public AccountDAO createAccountDAO(AccountDAOType accountDAOType) {
-        AccountDAO accountDAO = null;
-        switch (accountDAOType) {
-            case IN_MEMORY:
-                accountDAO =  createInMemoryDAO();
-                break;
-            case MOCK:
-                accountDAO = createMockDAO();
-            default:
-        }
-        return accountDAO;
-    }
-
 
     @Override
     public AccountService createAccountService(AccountDAOType accountDAOType) {
         if(accountService == null) {
             synchronized (AccountFactoryImpl.class) {
                 if(accountService == null) {
+//                    AccountDAO accountDAO = createAccountDAO(accountDAOType);
+//                    AccountService accountServiceImpl = new AccountServiceImpl(accountDAO);
                     accountService = new AccountServiceProxy(
                             new AccountServiceImpl(
                                     createAccountDAO(accountDAOType)
@@ -47,25 +37,35 @@ public class AccountFactoryImpl  implements AccountFactory{
         return accountService;
     }
 
-    private AccountDAO createInMemoryDAO() {
-        if(inMemoryDAO == null) {
-            synchronized (AccountFactoryImpl.class) {
-                if(inMemoryDAO == null) {
-                    inMemoryDAO = new AccountDAOImpl();
-                }
-            }
+    private AccountDAO createAccountDAO(AccountDAOType accountDAOType) {
+        switch (accountDAOType) {
+            case IN_MEMORY:
+                accountDAO =  createInMemoryDAO();
+                break;
+            case MOCK:
+                accountDAO = createMockDAO();
+            default:
         }
-        return  inMemoryDAO;
+        return accountDAO;
     }
-
-    private AccountDAO createMockDAO() {
-        if(mockDAO == null) {
+    private AccountDAO createInMemoryDAO() {
+        if(accountDAO == null) {
             synchronized (AccountFactoryImpl.class) {
-                if(mockDAO == null) {
-                    mockDAO = new AccountDAOMock();
+                if(accountDAO == null) {
+                    accountDAO = new AccountDAOImpl();
                 }
             }
         }
-        return mockDAO;
+        return  accountDAO;
+    }
+    private AccountDAO createMockDAO() {
+        if(accountDAO == null) {
+            synchronized (AccountFactoryImpl.class) {
+                if(accountDAO == null) {
+                    accountDAO = new AccountDAOMock();
+                }
+            }
+        }
+        return accountDAO;
     }
 }

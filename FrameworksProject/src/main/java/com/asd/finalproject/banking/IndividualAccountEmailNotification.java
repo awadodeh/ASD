@@ -25,13 +25,16 @@ public class IndividualAccountEmailNotification extends EmailNotification {
         if(amount == null ) {
             message.append("Hello, " + name + "! ");
             message.append("Your account balance is insufficient to make the amount you were trying to withdraw from your account " + accountNumber);
+
+            sendEmail("donotreply@bank.com", email, message.toString());
         }else if(amount > 500.0) {
             Transaction lastTransaction = account.getAllTransactions().get(account.getAllTransactions().size() - 1);
             message.append("Hello, " + name + "! ");
             message.append("An amount of " + lastTransaction.getAmount());
             message.append(" has been " + lastTransaction.getDescription());
             message.append(" at " + lastTransaction.getDate());
+
+            sendEmail("donotreply@bank.com", email, message.toString());
         }
-        sendEmail("donotreply@bank.com", email, message.toString());
     }
 }
